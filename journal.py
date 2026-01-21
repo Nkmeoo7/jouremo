@@ -2,11 +2,14 @@
 from analyzer import Analyzer
 from storage import Storage
 from datetime import datetime
+from reflection import Reflection
+
 
 class Journal:
     def __init__(self):
         self.analyzer= Analyzer()
         self.storage= Storage()
+        self.reflection=Reflection()
 
     def add_entry(self,text):
         emotion = self.analyzer.emotion_extract(text)
@@ -34,4 +37,11 @@ class Journal:
 
     def fetch_latest(self, limit:int=10):
         return self.storage.fetch_latest(limit)
+    
+    def reflect(self):
+       entries= self.storage.fetch_all()
+       common_emotion=self.reflection.most_common_emotion(entries)
+
+
+    
     
