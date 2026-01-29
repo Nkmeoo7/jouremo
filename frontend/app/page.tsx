@@ -12,6 +12,24 @@ export default function Home() {
   const [entries, setEntries] = useState<any[]>([]);
   const [reflection, setReflection] = useState<any>(null);
 
+  async function welcome() {
+    const res = await fetch(`${API}/`);
+
+    return await res.json();
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
   async function loadEntries() {
     const res = await fetch(`${API}/entries/latest`);
     const data = await res.json();
